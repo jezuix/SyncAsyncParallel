@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncAsyncParallel", "SyncAsyncParallel\SyncAsyncParallel.csproj", "{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF877DBC-2A5C-496F-A18D-F10204B71423}
+	EndGlobalSection
+EndGlobal
