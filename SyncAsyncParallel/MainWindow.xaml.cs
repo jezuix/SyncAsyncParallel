@@ -1,9 +1,10 @@
 ﻿using SyncAsyncParallel.Class;
 using SyncAsyncParallel.Methods;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace SyncAsyncParallel
@@ -13,8 +14,10 @@ namespace SyncAsyncParallel
     /// </summary>
     public partial class MainWindow : Window
     {
-        private System.Diagnostics.Stopwatch watch;
-        private List<WebSiteDataModel> results;
+        System.Diagnostics.Stopwatch watch;
+        IEnumerable<WebSiteDataModel> results;
+
+        CancellationTokenSource cts = new CancellationTokenSource();
 
         public MainWindow()
         {
@@ -24,23 +27,29 @@ namespace SyncAsyncParallel
         private void btnSync_Click(object sender, RoutedEventArgs e)
         {
             InitTest("SYNC");
-            foreach (var page in Shared.GetTestsPages())
-            {
-                results.Add(Sync.DownloadWebSiteSync(page));
-            }
+
+            results = Sync.RunDownloadSync();
 
             EndTest();
         }
 
         private async void btnAsync_Click(object sender, RoutedEventArgs e)
         {
+            var progress = new Progress<ProgressReportModel>();
+            progress.ProgressChanged += ReportProgress;
+
             InitTest("ASYNC");
-            foreach (var page in Shared.GetTestsPages())
-            {
-                results.Add(await ASync.DownloadWebSiteASync(page));
-            }
+
+            results = await ASync.RunDownloadASync(progress, cts.Token);
 
             EndTest();
+
+        }
+
+        private void ReportProgress(object sender, ProgressReportModel e)
+        {
+            pgbContantDownload.Value = e.PorcentageComplete;
+            PrintResults(e.SitesDowloaded);
         }
 
         private void btnParallelSync_Click(object sender, RoutedEventArgs e)
@@ -55,7 +64,7 @@ namespace SyncAsyncParallel
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            cts.Cancel();
         }
 
         private void InitTest(string message)
@@ -70,16 +79,23 @@ namespace SyncAsyncParallel
 
         private void EndTest()
         {
-            PrintResults(results);
-
             watch.Stop();
             var elapsedMs = watch.ElapsedMilliseconds;
 
+            PrintResults(results);
+
+            if (cts.IsCancellationRequested)
+            {
+                txtContantDownloadProgress.Text += $"The async download was cancelled.{Environment.NewLine}";
+                cts = new CancellationTokenSource();
+            }
+
             txtContantDownloadProgress.Text += $"Total execution time: {elapsedMs}";
+
             ButtonSwitch(true);
         }
 
-        private void PrintResults(IList<WebSiteDataModel> list)
+        private void PrintResults(IEnumerable<WebSiteDataModel> list)
         {
             txtContantDownloadProgress.Text = Shared.BrokenLines(list.Select(x => $"{x.WebSiteUrl} downloaded: {x.WebSiteData.Length} characters long."));
             txtContantDownloadProgress.Text += Environment.NewLine;

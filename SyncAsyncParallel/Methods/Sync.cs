@@ -1,11 +1,20 @@
 ﻿using SyncAsyncParallel.Class;
-using System;
+using System.Collections.Generic;
 using System.Net;
 
 namespace SyncAsyncParallel.Methods
 {
     public class Sync
     {
+        public static IEnumerable<WebSiteDataModel> RunDownloadSync()
+        {
+            var output = new List<WebSiteDataModel>();
+            foreach (var page in Shared.GetTestsPages())
+                output.Add(DownloadWebSiteSync(page));
+
+            return output;
+        }
+
         public static WebSiteDataModel DownloadWebSiteSync(string webSiteUrl)
         {
             return new WebSiteDataModel()
