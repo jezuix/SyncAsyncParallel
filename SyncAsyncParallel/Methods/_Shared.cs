@@ -1,5 +1,8 @@
-﻿using System;
+﻿using SyncAsyncParallel.Class;
+using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace SyncAsyncParallel.Methods
 {
@@ -27,6 +30,24 @@ namespace SyncAsyncParallel.Methods
         public static string BrokenLines(IEnumerable<string> list)
         {
             return string.Join(Environment.NewLine, list);
+        }
+
+        public static WebSiteDataModel DownloadWebSiteSync(string webSiteUrl)
+        {
+            return new WebSiteDataModel()
+            {
+                WebSiteUrl = webSiteUrl,
+                WebSiteData = new WebClient().DownloadString(webSiteUrl)
+            };
+        }
+
+        public static async Task<WebSiteDataModel> DownloadWebSiteAsync(string webSiteUrl)
+        {
+            return new WebSiteDataModel()
+            {
+                WebSiteUrl = webSiteUrl,
+                WebSiteData = await new WebClient().DownloadStringTaskAsync(webSiteUrl)
+            };
         }
     }
 }

@@ -10,18 +10,9 @@ namespace SyncAsyncParallel.Methods
         {
             var output = new List<WebSiteDataModel>();
             foreach (var page in Shared.GetTestsPages())
-                output.Add(DownloadWebSiteSync(page));
+                output.Add(Shared.DownloadWebSiteSync(page));
 
             return output;
-        }
-
-        public static WebSiteDataModel DownloadWebSiteSync(string webSiteUrl)
-        {
-            return new WebSiteDataModel()
-            {
-                WebSiteUrl = webSiteUrl,
-                WebSiteData = new WebClient().DownloadString(webSiteUrl)
-            };
         }
     }
 }

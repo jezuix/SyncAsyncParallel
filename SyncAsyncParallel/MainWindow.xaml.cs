@@ -46,20 +46,25 @@ namespace SyncAsyncParallel
 
         }
 
-        private void ReportProgress(object sender, ProgressReportModel e)
-        {
-            pgbContantDownload.Value = e.PorcentageComplete;
-            PrintResults(e.SitesDowloaded);
-        }
-
         private void btnParallelSync_Click(object sender, RoutedEventArgs e)
         {
+            InitTest("PARALLEL SYNC");
 
+            results = ParallelSync.RunDownloadParallelSync();
+
+            EndTest();
         }
 
-        private void btnParallelAsync_Click(object sender, RoutedEventArgs e)
+        private async void btnParallelAsync_Click(object sender, RoutedEventArgs e)
         {
+            var progress = new Progress<ProgressReportModel>();
+            progress.ProgressChanged += ReportProgress;
 
+            InitTest("PARALLEL ASYNC");
+
+            results = await ParallelAsync.RunDownloadParallelASync(progress, cts.Token);
+
+            EndTest();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -93,6 +98,12 @@ namespace SyncAsyncParallel
             txtContantDownloadProgress.Text += $"Total execution time: {elapsedMs}";
 
             ButtonSwitch(true);
+        }
+
+        private void ReportProgress(object sender, ProgressReportModel e)
+        {
+            pgbContantDownload.Value = e.PorcentageComplete;
+            PrintResults(e.SitesDowloaded);
         }
 
         private void PrintResults(IEnumerable<WebSiteDataModel> list)

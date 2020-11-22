@@ -18,7 +18,7 @@ namespace SyncAsyncParallel.Methods
             {
                 foreach (var page in websites)
                 {
-                    output.Add(await DownloadWebSiteASync(page));
+                    output.Add(await Shared.DownloadWebSiteAsync(page));
 
                     report.SetSitesDowloaded(output);
                     report.SetPorcentage(websites);
@@ -32,15 +32,6 @@ namespace SyncAsyncParallel.Methods
             }
 
             return output;
-        }
-
-        public static async Task<WebSiteDataModel> DownloadWebSiteASync(string webSiteUrl)
-        {
-            return new WebSiteDataModel()
-            {
-                WebSiteUrl = webSiteUrl,
-                WebSiteData = await new WebClient().DownloadStringTaskAsync(webSiteUrl)
-            };
         }
     }
 }
