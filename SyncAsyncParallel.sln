@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncAsyncParallel", "SyncAsyncParallel\SyncAsyncParallel.csproj", "{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncAsyncParallelWPF", "SyncAsyncParallelWPF\SyncAsyncParallelWPF.csproj", "{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncAsyncParallelConsole", "SyncAsyncParallelConsole\SyncAsyncParallelConsole.csproj", "{59BBC1F1-38D1-431A-8AE1-FB4A73D74DE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD93F19D-CD1D-4783-B45D-4EC55E67FD66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BBC1F1-38D1-431A-8AE1-FB4A73D74DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BBC1F1-38D1-431A-8AE1-FB4A73D74DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BBC1F1-38D1-431A-8AE1-FB4A73D74DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BBC1F1-38D1-431A-8AE1-FB4A73D74DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

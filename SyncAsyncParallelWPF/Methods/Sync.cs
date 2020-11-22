@@ -1,8 +1,7 @@
-﻿using SyncAsyncParallel.Class;
+﻿using SyncAsyncParallelWPF.Class;
 using System.Collections.Generic;
-using System.Net;
 
-namespace SyncAsyncParallel.Methods
+namespace SyncAsyncParallelWPF.Methods
 {
     public class Sync
     {

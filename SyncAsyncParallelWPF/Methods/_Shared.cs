@@ -1,10 +1,10 @@
-﻿using SyncAsyncParallel.Class;
+﻿using SyncAsyncParallelWPF.Class;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SyncAsyncParallel.Methods
+namespace SyncAsyncParallelWPF.Methods
 {
     public static class Shared
     {

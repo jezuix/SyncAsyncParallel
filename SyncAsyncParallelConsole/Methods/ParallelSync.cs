@@ -1,8 +1,8 @@
-﻿using SyncAsyncParallel.Class;
+﻿using SyncAsyncParallelConsole.Class;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SyncAsyncParallel.Methods
+namespace SyncAsyncParallelConsole.Methods
 {
     public class ParallelSync
     {

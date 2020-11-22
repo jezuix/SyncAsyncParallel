@@ -1,4 +1,4 @@
-﻿namespace SyncAsyncParallel.Class
+﻿namespace SyncAsyncParallelWPF.Class
 {
     public class WebSiteDataModel
     {

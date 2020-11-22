@@ -1,18 +1,17 @@
-﻿using SyncAsyncParallel.Class;
+﻿using SyncAsyncParallelConsole.Class;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SyncAsyncParallel.Methods
+namespace SyncAsyncParallelConsole.Methods
 {
     public class ParallelAsync
     {
-        public static async Task<IEnumerable<WebSiteDataModel>> RunDownloadParallelASync(IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
+        public static async Task<IEnumerable<WebSiteDataModel>> RunDownloadParallelASync(CancellationToken cancellationToken)
         {
             var websites = Shared.GetTestsPages();
             var output = new List<WebSiteDataModel>();
-            var report = new ProgressReportModel();
             await Task.Run(() =>
             {
                 Parallel.ForEach(websites, (page) =>
@@ -21,17 +20,13 @@ namespace SyncAsyncParallel.Methods
                     {
                         output.Add(Shared.DownloadWebSiteSync(page));
 
-                        report.SetSitesDowloaded(output);
-                        report.SetPorcentage(websites);
-                        progress.Report(report);
-
                         cancellationToken.ThrowIfCancellationRequested();
                     }
                     catch (OperationCanceledException)
                     {
                     }
                 });
-            });
+            }, cancellationToken);
 
             return output;
         }

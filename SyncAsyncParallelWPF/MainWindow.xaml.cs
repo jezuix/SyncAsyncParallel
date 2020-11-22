@@ -1,10 +1,9 @@
-﻿using SyncAsyncParallel.Class;
-using SyncAsyncParallel.Methods;
+﻿using SyncAsyncParallelWPF.Class;
+using SyncAsyncParallelWPF.Methods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace SyncAsyncParallel
@@ -40,7 +39,7 @@ namespace SyncAsyncParallel
 
             InitTest("ASYNC");
 
-            results = await ASync.RunDownloadASync(progress, cts.Token);
+            results = await Async.RunDownloadAsync(progress, cts.Token);
 
             EndTest();
 

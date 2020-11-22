@@ -1,15 +1,14 @@
-﻿using SyncAsyncParallel.Class;
+﻿using SyncAsyncParallelWPF.Class;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SyncAsyncParallel.Methods
+namespace SyncAsyncParallelWPF.Methods
 {
-    public class ASync
+    public class Async
     {
-        public static async Task<IEnumerable<WebSiteDataModel>> RunDownloadASync(IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
+        public static async Task<IEnumerable<WebSiteDataModel>> RunDownloadAsync(IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
         {
             var websites = Shared.GetTestsPages();
             var output = new List<WebSiteDataModel>();
