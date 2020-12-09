@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 
-namespace SyncAsyncParallel
+namespace SyncAsyncParallelWPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -66,6 +66,18 @@ namespace SyncAsyncParallel
             EndTest();
         }
 
+        private async void btnParallelAsync2_Click(object sender, RoutedEventArgs e)
+        {
+            var progress = new Progress<ProgressReportModel>();
+            progress.ProgressChanged += ReportProgress;
+
+            InitTest("PARALLEL ASYNC");
+
+            results = await ParallelAsync.RunDownloadParallelASync2(progress, cts.Token);
+
+            EndTest();
+        }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             cts.Cancel();
@@ -73,6 +85,7 @@ namespace SyncAsyncParallel
 
         private void InitTest(string message)
         {
+            cts = new CancellationTokenSource();
             txtContantDownloadProgress.Text = message;
 
             ButtonSwitch(false);
@@ -91,7 +104,6 @@ namespace SyncAsyncParallel
             if (cts.IsCancellationRequested)
             {
                 txtContantDownloadProgress.Text += $"The async download was cancelled.{Environment.NewLine}";
-                cts = new CancellationTokenSource();
             }
 
             txtContantDownloadProgress.Text += $"Total execution time: {elapsedMs}";
@@ -118,6 +130,7 @@ namespace SyncAsyncParallel
             btnAsync.IsEnabled = newStats;
             btnParallelSync.IsEnabled = newStats;
             btnParallelAsync.IsEnabled = newStats;
+            btnParallelAsync2.IsEnabled = newStats;
         }
     }
 }

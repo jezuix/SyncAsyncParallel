@@ -35,25 +35,35 @@ namespace SyncAsyncParallelWPF.Methods
 
             return output;
         }
+
+
+        public static async Task<IEnumerable<WebSiteDataModel>> RunDownloadParallelASync2(IProgress<ProgressReportModel> progress, CancellationToken cancellationToken)
+        {
+            var websites = Shared.GetTestsPages();
+            var output = new List<WebSiteDataModel>();
+            var report = new ProgressReportModel();
+            await Task.Run(() =>
+            {
+                Parallel.ForEach(websites, async (page) =>
+                {
+                    try
+                    {
+                        output.Add(await Shared.DownloadWebSiteAsync(page));
+
+                        report.SetSitesDowloaded(output);
+                        report.SetPorcentage(websites);
+                        progress.Report(report);
+
+                        cancellationToken.ThrowIfCancellationRequested();
+                    }
+                    catch (OperationCanceledException)
+                    {
+                    }
+                });
+            }, cancellationToken);
+
+            return output;
+        }
     }
 }
 
-//await Task.Run(() =>
-//{
-//    Parallel.ForEach(websites, async (page) =>
-//    {
-//        try
-//        {
-//            output.Add(await Shared.DownloadWebSiteAsync(page));
-
-//            report.SetSitesDowloaded(output);
-//            report.SetPorcentage(websites);
-//            progress.Report(report);
-
-//            cancellationToken.ThrowIfCancellationRequested();
-//        }
-//        catch (OperationCanceledException)
-//        {
-//        }
-//    });
-//});

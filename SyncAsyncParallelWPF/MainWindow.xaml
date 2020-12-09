@@ -3,17 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SyncAsyncParallel"
+        xmlns:local="clr-namespace:SyncAsyncParallelWPF"
         mc:Ignorable="d"
-        Title="SYNC, ASYNC AND PARALLEL ASYNC" Height="647" Width="800" ResizeMode="NoResize">
+        Title="SYNC, ASYNC AND PARALLEL ASYNC" Height="715" Width="800" ResizeMode="NoResize">
     <Grid>
         <Button x:Name="btnSync" Content="SYNC" HorizontalAlignment="Center" Margin="0,71,0,0" VerticalAlignment="Top" Width="780" Height="50" Click="btnSync_Click"/>
         <Button x:Name="btnAsync" Content="ASYNC" HorizontalAlignment="Center" Margin="0,126,0,0" VerticalAlignment="Top" Width="780" Height="50" Click="btnAsync_Click"/>
-        <Button x:Name="btnParallelSync" Content="PARALLEL ASYNC" HorizontalAlignment="Center" Margin="0,181,0,0" VerticalAlignment="Top" Width="780" Height="50" Click="btnParallelSync_Click"/>
+        <Button x:Name="btnParallelSync" Content="PARALLEL SYNC" HorizontalAlignment="Center" Margin="0,181,0,0" VerticalAlignment="Top" Width="780" Height="50" Click="btnParallelSync_Click"/>
         <Button x:Name="btnParallelAsync" Content="PARALLEL ASYNC" HorizontalAlignment="Center" Margin="0,236,0,0" VerticalAlignment="Top" Width="780" Height="50" Click="btnParallelAsync_Click"/>
-        <Button x:Name="btnCancel" Content="CANCEL" HorizontalAlignment="Center" VerticalAlignment="Top" Width="780" Height="50" Click="btnCancel_Click" Margin="0,292,0,0"/>
-        <ProgressBar x:Name="pgbContantDownload" HorizontalAlignment="Center" Margin="0,346,0,0" VerticalAlignment="Top" Width="780" Height="20"/>
-        <TextBox x:Name="txtContantDownloadProgress" HorizontalAlignment="Center" Margin="0,371,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="780" Height="250" IsEnabled="False"/>
+        <Button x:Name="btnParallelAsync2" Content="PARALLEL ASYNC 2" HorizontalAlignment="Center" VerticalAlignment="Top" Width="780" Height="50" Click="btnParallelAsync2_Click" Margin="0,291,0,0" IsCancel="True"/>
+        <Button x:Name="btnCancel" Content="CANCEL" HorizontalAlignment="Center" VerticalAlignment="Top" Width="780" Height="50" Click="btnCancel_Click" Margin="0,346,0,0"/>
+        <ProgressBar x:Name="pgbContantDownload" HorizontalAlignment="Center" Margin="0,401,0,0" VerticalAlignment="Top" Width="780" Height="20"/>
+        <TextBox x:Name="txtContantDownloadProgress" HorizontalAlignment="Center" Margin="0,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="780" Height="263" IsEnabled="False"/>
         <Label x:Name="lblTitle" Content="Sync, Async and Parallel System Test" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="780" Height="56" FontWeight="Bold" FontSize="36"/>
 
     </Grid>
